@@ -1,8 +1,8 @@
-CREATE DATABASE escuelita;
+CREATE DATABASE escuelita
 
-go;
+go
 
-use escuelita;
+use escuelita
 
 CREATE TABLE Persona (
     CURP CHAR (18) NOT NULL PRIMARY KEY,
@@ -55,4 +55,4 @@ INSERT INTO Alumno (CURP, NumeroDeControl, Carrera)
 
 
 Select NumeroDeControl, Nombre, CarreraClave from Persona
-    JOIN Alumno ON Persona
+    JOIN Alumno ON Persona.CURP = Alumno.CURP
