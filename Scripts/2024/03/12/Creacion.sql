@@ -50,9 +50,11 @@ INSERT INTO Carrera (Clave, Nombre)
 INSERT INTO Persona(CURP, Nombre, Direccion, Nacimiento)
     VALUES ('JS20FR', 'Johane Sacrebleu', 'Por alla', '2003-04-05')
 
-INSERT INTO Alumno (CURP, NumeroDeControl, Carrera)
+INSERT INTO Alumno (CURP, NumeroDeControl, CarreraClave)
     VALUES ('JS20FR', '20170005', 'ITIC-2010-225')
 
 
 Select NumeroDeControl, Nombre, CarreraClave from Persona
     JOIN Alumno ON Persona.CURP = Alumno.CURP
+
+
