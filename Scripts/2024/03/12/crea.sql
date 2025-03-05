@@ -58,3 +58,15 @@ SELECT getdate()
 
 ALTER TABLE empleado
     ADD nacimiento date not null check (date < getDate())
+
+SELECT * FROM empleado
+
+ALTER TABLE empleado   
+    ADD RFC char(13) NULL
+
+ALTER TABLE empleado
+    ADD CONSTRAINT rfc_unico UNIQUE (RFC)
+
+UPDATE empleado 
+    SET RFC = 'JARA12345678'
+    WHERE idEmpleado = 3
