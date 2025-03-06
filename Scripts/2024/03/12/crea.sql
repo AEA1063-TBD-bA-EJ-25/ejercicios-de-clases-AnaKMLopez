@@ -70,3 +70,82 @@ ALTER TABLE empleado
 UPDATE empleado 
     SET RFC = 'JARA12345678'
     WHERE idEmpleado = 3
+
+SELECT * FROM empleado
+
+UPDATE empleado 
+    SET RFC = 'FJ01'
+    WHERE idEmpleado = 1
+
+UPDATE empleado 
+    SET RFC = 'ABC02'
+    WHERE idEmpleado = 2
+
+UPDATE empleado 
+    SET RFC = 'AA333'
+    WHERE idEmpleado = 4
+
+UPDATE empleado 
+    SET RFC = 'J4560D'
+    WHERE idEmpleado = 5
+
+SELECT * FROM empleado
+
+INSERT INTO empleado (idEmpleado, nombre, sexo, RFC) VALUES (6, 'Delia Barrante', 'F', 'J4560D')
+
+CREATE TABLE Departamento (
+    idDepartamento INT NOT NULL PRIMARY KEY,
+    Nombre NVARCHAR (30)
+)
+
+INSERT INTO Departamento (idDepartamento, Nombre) 
+    VALUES (1, 'Ventas'), (2, 'MKT'), (3, 'TIC') 
+
+SELECT * FROM Departamento
+
+ALTER TABLE empleado  
+    ADD TabrajaEn INT NULL FOREIGN KEY REFERENCES Departamento (idDepartamento)
+
+SELECT * FROM empleado
+
+UPDATE empleado 
+    SET TabrajaEn = 1
+    WHERE idEmpleado IN (1, 2)
+
+
+UPDATE empleado 
+    SET TabrajaEn = 2
+    WHERE idEmpleado IN (3, 5)
+
+
+UPDATE empleado 
+    SET TabrajaEn = 3
+    WHERE idEmpleado IN (4, 6)
+
+DELETE FROM Departamento
+    WHERE idDepartamento = 2
+
+ALTER TABLE empleado
+    DROP CONSTRAINT FK__empleado__Tabraj__2A164134
+
+ALTER TABLE empleado   
+    ADD CONSTRAINT FK_empleado_TrabajaEn FOREIGN KEY (TabrajaEn) REFERENCES Departamento (idDepartamento)
+    ON DELETE SET NULL
+
+DELETE FROM Departamento
+    WHERE idDepartamento = 2
+
+SELECT * FROM empleado
+
+CREATE TABLE Familiares (
+    nombre NVARCHAR (50) NOT NULL,
+    idEmpleado INT NOT NULL FOREIGN KEY REFERENCES empleado(idEmpleado) ON DELETE CASCADE
+)
+
+INSERT INTO Familiares (nombre, idEmpleado)
+    VALUES ('Gertrudis', 1), ('Daniel', 1), ('Manuel', 2)
+
+SELECT * FROM Familiares
+
+DELETE FROM empleado 
+    WHERE idEmpleado = 1

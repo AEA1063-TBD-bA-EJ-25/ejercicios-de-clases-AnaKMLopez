@@ -57,4 +57,3 @@ INSERT INTO Alumno (CURP, NumeroDeControl, CarreraClave)
 Select NumeroDeControl, Nombre, CarreraClave from Persona
     JOIN Alumno ON Persona.CURP = Alumno.CURP
 
-
