@@ -149,3 +149,4 @@ SELECT * FROM Familiares
 
 DELETE FROM empleado 
     WHERE idEmpleado = 1
+
