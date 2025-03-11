@@ -104,8 +104,14 @@ SELECT productid, productname, unitprice, categoryid
     WHERE productname LIKE 'u%'
         AND 
             unitprice = 30
-            
+
 
 SELECT productid, productname, unitprice, categoryid
     FROM Products
     WHERE UnitPrice IN (30, 40)
+
+
+SELECT productid, productname, unitprice, categoryid
+    FROM Products
+    WHERE UnitPrice BETWEEN 30 AND 40
+        AND CategoryID = 2
