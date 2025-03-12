@@ -115,3 +115,67 @@ SELECT productid, productname, unitprice, categoryid
     FROM Products
     WHERE UnitPrice BETWEEN 30 AND 40
         AND CategoryID = 2
+
+--Order by para ordenarlo
+SELECT productid, productname, unitprice, categoryid
+    FROM Products
+    WHERE UnitPrice BETWEEN 30 AND 40
+        ORDER BY ProductName
+
+SELECT productid, productname, unitprice, categoryid, Discontinued
+    FROM Products
+    WHERE UnitPrice BETWEEN 30 AND 40
+        ORDER BY Discontinued
+
+--Ordenado por categoria y despues por nombre del producto
+SELECT productid, productname, unitprice, categoryid, Discontinued
+    FROM Products
+    ORDER BY CategoryID, ProductName
+
+--Ordenado por categoria y despues por el precio unitario
+SELECT productid, productname, unitprice, categoryid, Discontinued
+    FROM Products
+    ORDER BY CategoryID, UnitPrice
+
+--ORDENADOS POR PRECIOS DEL MENOR AL MAYOR
+SELECT productid, productname, unitprice, categoryid, Discontinued
+    FROM Products
+    ORDER BY CategoryID, UnitPrice DESC
+
+--ORDENADOS POR PRECIOS DEL MAYOR AL MENOR
+SELECT productid, productname, unitprice, categoryid, Discontinued
+    FROM Products
+    ORDER BY CategoryID ASC, UnitPrice DESC
+
+--Quitar duplicados con DISTINCT
+SELECT DISTINCT Country
+FROM Suppliers
+ORDER BY Country
+
+--DISTINCT Regresa filas unicas y distintas (toma toda la fila como un elemento)
+SELECT DISTINCT Country, CompanyName
+FROM Suppliers
+ORDER BY Country
+
+-- __ AS __ renombra tablas
+SELECT DISTINCT Country AS Pais, CompanyName AS Proveedor
+FROM Suppliers
+ORDER BY Country
+
+--Es lo mismo que usar AS
+SELECT DISTINCT Pais = Country, Proveedor = CompanyName
+FROM Suppliers
+ORDER BY Country
+
+
+SELECT ProductName, UnitPrice FROM Products
+
+--En consultas puedo agregar una expresion
+SELECT ProductName, PrecioNuevo = UnitPrice * 1.10 FROM Products
+
+SELECT ProductName, Sabor = 'Muy rico', PrecioNuevo = UnitPrice * 1.10 FROM Products
+
+SELECT * FROM Employees
+
+--Da la edad del empleado con el DATEDIFF
+SELECT DATEDIFF(year, BirthDate, getdate()) FROM Employees
