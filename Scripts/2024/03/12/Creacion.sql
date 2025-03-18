@@ -57,3 +57,22 @@ INSERT INTO Alumno (CURP, NumeroDeControl, CarreraClave)
 Select NumeroDeControl, Nombre, CarreraClave from Persona
     JOIN Alumno ON Persona.CURP = Alumno.CURP
 
+
+-- 18-MAR-25
+SELECT * FROM Persona
+
+SELECT SYSDATETIME()
+
+SELECT SYSDATETIMEOFFSET()
+
+SELECT SYSUTCDATETIME()	
+
+SELECT (DATENAME(MONTH, nacimiento)) FROM Persona
+
+SELECT nacimiento, DATENAME(MONTH, nacimiento), (DAY(nacimiento)), (MONTH(nacimiento)), (YEAR(nacimiento))
+
+SELECT DATENAME (MONTH, nacimiento), DATEPART(MONTH, nacimiento) FROM Persona
+
+SELECT DATEDIFF(MONTH, GETDATE(), nacimiento) FROM Persona
+SELECT DATEDIFF(DAY, GETDATE(), nacimiento) FROM Persona
+SELECT DATEDIFF(YEAR, Nacimiento, GETDATE()) AS EDAD FROM Persona
