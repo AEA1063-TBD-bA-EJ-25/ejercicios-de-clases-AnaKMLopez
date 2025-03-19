@@ -69,7 +69,7 @@ SELECT SYSUTCDATETIME()
 
 SELECT (DATENAME(MONTH, nacimiento)) FROM Persona
 
-SELECT nacimiento, DATENAME(MONTH, nacimiento), (DAY(nacimiento)), (MONTH(nacimiento)), (YEAR(nacimiento))
+SELECT nacimiento, DATENAME(MONTH, nacimiento), (DAY(nacimiento)), (MONTH(nacimiento)), (YEAR(nacimiento)) FROM Persona
 
 SELECT DATENAME (MONTH, nacimiento), DATEPART(MONTH, nacimiento) FROM Persona
 

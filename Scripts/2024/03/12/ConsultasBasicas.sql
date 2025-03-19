@@ -179,3 +179,38 @@ SELECT * FROM Employees
 
 --Da la edad del empleado con el DATEDIFF
 SELECT DATEDIFF(year, BirthDate, getdate()) FROM Employees
+
+-- 19-03-25
+SELECT * FROM Products, Categories
+SELECT * FROM Products
+    JOIN Categories on Products.categoryid = Categories.categoryid
+
+SELECT productid, productname, unitprice, categoryname from Products
+    join Categories on Products.categoryid = Categories.categoryid
+
+SELECT orderId, CompanyName FROM Orders
+    JOIN Customers ON Customers.CustomerID = orders.CustomerID
+
+SELECT orderId, lastname FROM Orders
+    JOIN Employees ON Employees.EmployeeID = orders.EmployeeID
+
+SELECT orderID from orders
+    join Customers on Customers.customerID = orders.customerID
+
+SELECT orderId, lastname from orders
+    JOIN Employees ON Employees.EmployeeID = orders.EmployeeID
+    JOIN Customers ON Customers.customerID = orders.customerID
+
+SELECT orderId, lastname, CompanyName, OrderDate, RequiredDate, Shippeddate, DATEDIFF(DAY, orderdate, ShippedDate) from orders
+    JOIN Employees ON Employees.EmployeeID = orders.EmployeeID
+    JOIN Customers ON Customers.customerID = orders.customerID
+    WHERE OrderID = 10252
+
+SELECT orderId, lastname, CompanyName, OrderDate, RequiredDate, Shippeddate, DATEDIFF(DAY, orderdate, ShippedDate) from orders
+    JOIN Employees ON Employees.EmployeeID = orders.EmployeeID
+    JOIN Customers ON Customers.customerID = orders.customerID
+
+SELECT orderId, lastname, CompanyName, OrderDate, RequiredDate, Shippeddate, DATEDIFF(DAY, orderdate, ShippedDate) from orders
+    JOIN Employees ON Employees.EmployeeID = orders.EmployeeID
+    JOIN Customers ON Customers.customerID = orders.customerID
+    WHERE DATEDIFF(DAY, orderdate, ShippedDate) > 0
