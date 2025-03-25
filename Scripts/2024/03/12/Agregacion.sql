@@ -31,3 +31,37 @@ SELECT COUNT(*) FROM [Order Details]
 --Cual es el importe de la orden 10250
 SELECT SUM(UNITPRICE * QUANTITY - Discount * UnitPrice * Quantity) FROM [Order Details]
     WHERE OrderID = 10250
+
+--Cuanto hemos vendido en total desde que empezo la empresa hasta ahora
+SELECT SUM(UNITPRICE * QUANTITY - Discount * UnitPrice * Quantity) AS TOTAL FROM [Order Details]
+
+--Cuanto vendimos de Chai
+
+
+--Cuanto vendimos en 1997
+
+
+--TABLAS
+SELECT * FROM Categories
+SELECT * FROM Products
+SELECT * FROM Orders
+
+--Cuanto vendimos de Beverages
+SELECT SUM([Order Details].UnitPrice * QUANTITY - Discount * [Order Details].UnitPrice * Quantity) FROM [Order Details]
+    JOIN Products ON Products.ProductID = [Order Details].[ProductID]
+    WHERE CategoryID = 1
+
+--Para cambiar los nombres de las variables 
+SELECT SUM([OD].UnitPrice * QUANTITY - Discount * [OD].UnitPrice * Quantity) FROM [Order Details] OD
+    JOIN Products P ON P.ProductID = [OD].[ProductID]
+    JOIN Categories C ON C.CategoryID = P.CategoryID
+
+--Cuanto vendimos de bebidas en  1997
+SELECT SUM(QUANTITY * (1 - Discount) * OD.Unitprice) AS TOTAL  FROM [Order Details] OD
+    JOIN Products P ON P.ProductID = OD.ProductID
+    JOIN Categories C ON C.CategoryID = P.CategoryID
+    JOIN Orders O ON O.OrderID = OD.OrderID
+    WHERE 1 = 1
+        AND C.categoryname = 'Beverages'
+        AND YEAR(OrderDate) = 1997
+
