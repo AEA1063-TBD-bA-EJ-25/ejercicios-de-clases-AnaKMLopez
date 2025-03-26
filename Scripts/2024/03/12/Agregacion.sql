@@ -35,16 +35,12 @@ SELECT SUM(UNITPRICE * QUANTITY - Discount * UnitPrice * Quantity) FROM [Order D
 --Cuanto hemos vendido en total desde que empezo la empresa hasta ahora
 SELECT SUM(UNITPRICE * QUANTITY - Discount * UnitPrice * Quantity) AS TOTAL FROM [Order Details]
 
---Cuanto vendimos de Chai
-
-
---Cuanto vendimos en 1997
-
-
 --TABLAS
 SELECT * FROM Categories
 SELECT * FROM Products
 SELECT * FROM Orders
+SELECT * FROM [Order Details]
+SELECT * FROM Customers
 
 --Cuanto vendimos de Beverages
 SELECT SUM([Order Details].UnitPrice * QUANTITY - Discount * [Order Details].UnitPrice * Quantity) FROM [Order Details]
@@ -65,16 +61,25 @@ SELECT SUM(QUANTITY * (1 - Discount) * OD.Unitprice) AS TOTAL  FROM [Order Detai
         AND C.categoryname = 'Beverages'
         AND YEAR(OrderDate) = 1997
 
---Cuanto vendí en 1997 de cada categoría(importe de ventas de cada categoría en el año 1997)
-SELECT * FROM Categories
-SELECT * FROM [Order Details]
-SELECT * FROM Orders
-    WHERE YEAR(OrderDate) = 1997
-
-SELECT C.CategoryName, SUM(QUANTITY * (1 - Discount) * OD.Unitprice) AS TotalVendido FROM [Order Details] OD
+--Cuanto vendí en 1997 de cada categoría de producto 
+SELECT C.CategoryName, SUM(QUANTITY * (1 - Discount) * OD.Unitprice)  AS TotalVendido FROM [Order Details] OD
     JOIN Orders O ON OD.OrderID = O.OrderID
     JOIN Products P ON OD.ProductID = P.ProductID
     JOIN Categories C ON P.CategoryID = C.CategoryID
     WHERE YEAR(O.OrderDate) = 1997
     GROUP BY C.CategoryName
     ORDER BY C.CategoryName ASC;
+
+--
+SELECT SUM(QUANTITY * (1 - Discount) * OD.Unitprice)  AS TotalVendido FROM [Order Details] OD
+    WHERE OrderID = 10250
+
+--DATEPART ORDENA POR EL NUMERO DEL MES
+SELECT C.CategoryName, DATENAME (month, O.OrderDate), SUM(QUANTITY * (1 - Discount) * OD.Unitprice) AS TotalVendido FROM [Order Details] OD
+    JOIN Orders O ON OD.OrderID = O.OrderID
+    JOIN Products P ON OD.ProductID = P.ProductID
+    JOIN Categories C ON P.CategoryID = C.CategoryID
+    WHERE YEAR(O.OrderDate) = 1997
+    GROUP BY C.CategoryName, DATEPART (month, O.OrderDate), DATENAME (month, O.OrderDate)
+    ORDER BY C.CategoryName, DATEPART (month, O.OrderDate) ASC;
+
