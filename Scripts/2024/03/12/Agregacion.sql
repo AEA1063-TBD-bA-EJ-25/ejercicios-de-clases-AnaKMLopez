@@ -65,3 +65,16 @@ SELECT SUM(QUANTITY * (1 - Discount) * OD.Unitprice) AS TOTAL  FROM [Order Detai
         AND C.categoryname = 'Beverages'
         AND YEAR(OrderDate) = 1997
 
+--Cuanto vendí en 1997 de cada categoría(importe de ventas de cada categoría en el año 1997)
+SELECT * FROM Categories
+SELECT * FROM [Order Details]
+SELECT * FROM Orders
+    WHERE YEAR(OrderDate) = 1997
+
+SELECT C.CategoryName, SUM(QUANTITY * (1 - Discount) * OD.Unitprice) AS TotalVendido FROM [Order Details] OD
+    JOIN Orders O ON OD.OrderID = O.OrderID
+    JOIN Products P ON OD.ProductID = P.ProductID
+    JOIN Categories C ON P.CategoryID = C.CategoryID
+    WHERE YEAR(O.OrderDate) = 1997
+    GROUP BY C.CategoryName
+    ORDER BY C.CategoryName ASC;
