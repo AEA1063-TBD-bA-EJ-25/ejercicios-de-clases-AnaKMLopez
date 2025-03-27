@@ -70,11 +70,11 @@ SELECT C.CategoryName, SUM(QUANTITY * (1 - Discount) * OD.Unitprice)  AS TotalVe
     GROUP BY C.CategoryName
     ORDER BY C.CategoryName ASC;
 
---
+--El precio total de la orden 10250
 SELECT SUM(QUANTITY * (1 - Discount) * OD.Unitprice)  AS TotalVendido FROM [Order Details] OD
     WHERE OrderID = 10250
 
---DATEPART ORDENA POR EL NUMERO DEL MES
+--DATEPART: ORDENA POR EL NUMERO DEL MES
 SELECT C.CategoryName, DATENAME (month, O.OrderDate), SUM(QUANTITY * (1 - Discount) * OD.Unitprice) AS TotalVendido FROM [Order Details] OD
     JOIN Orders O ON OD.OrderID = O.OrderID
     JOIN Products P ON OD.ProductID = P.ProductID
@@ -83,3 +83,15 @@ SELECT C.CategoryName, DATENAME (month, O.OrderDate), SUM(QUANTITY * (1 - Discou
     GROUP BY C.CategoryName, DATEPART (month, O.OrderDate), DATENAME (month, O.OrderDate)
     ORDER BY C.CategoryName, DATEPART (month, O.OrderDate) ASC;
 
+SELECT * FROM Employees
+SELECT * FROM Suppliers
+SELECT * FROM Categories
+
+--Cuales ordenes han sido de menos de 500 dls
+--HAVING: 
+--TOP: Cuantas filas quiero ver
+SELECT * FROM Orders
+SELECT OrderID, SUM(UNITPRICE * QUANTITY - Discount * UnitPrice * Quantity) AS TOTAL FROM [Order Details]
+    GROUP BY OrderID
+    HAVING SUM(UNITPRICE * QUANTITY - Discount * UnitPrice * Quantity) < 500
+    ORDER BY TOTAL
