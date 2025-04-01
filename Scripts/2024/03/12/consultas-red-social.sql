@@ -1,0 +1,16 @@
+USE SOCIAL
+
+SELECT * FROM Highschooler
+SELECT * FROM Friend
+SELECT * FROM Likes
+
+SELECT H1.NAME, H2.NAME FROM Highschooler H1
+    JOIN Friend F ON H1.ID = F.ID1
+    JOIN Highschooler H2 ON H2.ID = F.ID2
+    WHERE H1.NAME = 'GABRIEL'
+
+--PERSONA QUE LE GUSTA ALGUIEN DOS AÑOS MENOR (NO MUTUO)
+SELECT * FROM Highschooler H1
+    JOIN LIKES L ON L.ID1 = H1.ID
+    JOIN Highschooler H2 ON L.ID2 = H2.ID
+    WHERE H1.grade -2 >= H2.grade
