@@ -62,8 +62,8 @@ CREATE TABLE recursoshumanos.deparamento (
 GRANT SELECT, INSERT ON ventas.venta TO vendedor;
 GRANT SELECT, INSERT ON ventas.detalle_venta TO vendedor;
 
-GRANT SELECT, INSERT, UPDATE, DELETE ON recursoshumanos.empleado TO headhr;
-GRANT SELECT, INSERT, UPDATE, DELETE ON recursoshumanos.departamento TO headhr;
+GRANT SELECT, INSERT, UPDATE, DELETE ON recursoshumanos.empleados TO headhr;
+GRANT SELECT, INSERT, UPDATE, DELETE ON recursoshumanos.deparamento TO headhr;
 
 ALTER ROLE vendedor ADD MEMBER Jaime;
 ALTER ROLE headhr ADD MEMBER Rosa;

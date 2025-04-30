@@ -1,1 +1,1 @@
-SELECT * FROM recursoshumanos.empleado
+SELECT * FROM recursoshumanos.empleados
