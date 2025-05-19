@@ -16,3 +16,4 @@ DECLARE @f SMALLINT
 SET @f = 8
 EXECUTE mathtutor @f, 10, @answer OUTPUT
 SELECT 'The result is: ', @answer
+
